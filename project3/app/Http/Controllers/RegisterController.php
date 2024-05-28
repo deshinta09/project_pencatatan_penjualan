@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +19,7 @@ class RegisterController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
             'phone' => ['required'],
             'address' => ['required'],
@@ -30,7 +30,7 @@ class RegisterController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $customer = Customer::create([
+        $customer = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -39,8 +39,8 @@ class RegisterController extends Controller
             'role' => $request->role,
         ]);
 
-        auth()->login($customer);
+        // auth()->login($customer);
 
-        return redirect()->route('/login');
+        return redirect()->route('login');
     }
 }

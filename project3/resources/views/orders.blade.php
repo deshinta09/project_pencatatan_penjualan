@@ -34,7 +34,7 @@
                 <tr class="border-b border-indigo-300">
                     <td scope="col">{{ $order['id'] }}</td>
                     <td scope="col">{{ $order['code'] }}</td>
-                    <td scope="col">{{ $order['created_at'] }}</td>
+                    <td scope="col">{{ $order->created_at->format('j F Y') }}</td>
                     <td scope="col">{{ $order['customer_id'] }}</td>
                     <td scope="col">{{ $order['address'] }}</td>
                     <td scope="col">{{ $order['subtotal'] }}</td>

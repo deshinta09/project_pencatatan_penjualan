@@ -8,19 +8,20 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function loginForm(){
-        return view('auth/login');
+        return view( view: 'auth/login');
     }
+    
     public function authenticate(Request $request)
     {
-        $credentials = $request->validate([
+        $credentials = $request->validate( rules: [
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
  
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt(credentials: $credentials)) {
             $request->session()->regenerate();
  
-            return redirect()->intended('/');
+            return redirect()->intended(default: '/');
         }
  
         return back();

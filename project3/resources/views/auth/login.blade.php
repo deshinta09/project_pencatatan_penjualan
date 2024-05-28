@@ -29,7 +29,7 @@
         </div>
     @endif
 
-    <form action="{{ route('orders.store') }}" method="POST" class="p-14 w-full">
+    <form action="{{ route('login') }}" method="POST" class="p-14 w-full">
         @csrf
         <label for="email">Email:</label>
         <input type="text" id="email" name="email" value="{{ old('email') }}"><br><br>
